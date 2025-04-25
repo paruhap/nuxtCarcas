@@ -25,6 +25,9 @@
   </template>
   
   <script setup>
+  definePageMeta({
+  layout: 'admin'
+})
   const form = ref({
     name: '',
     email: ''

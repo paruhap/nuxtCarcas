@@ -11,7 +11,6 @@ const logout = async () => {
 
 <template>
   <div>
-    <h1>Выход</h1>
     <button @click="logout">Выйти</button>
   </div>
 </template>

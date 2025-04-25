@@ -18,7 +18,7 @@ export default defineNitroPlugin((nitroApp) => {
       email TEXT UNIQUE NOT NULL
     );
 
-     CREATE TABLE IF NOT EXISTS team (
+    CREATE TABLE IF NOT EXISTS team (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     secondname TEXT,
@@ -42,3 +42,22 @@ export default defineNitroPlugin((nitroApp) => {
     event.context.db = db
   })
 })
+
+//Добавим функцию для пересоздания таблицы (использовать только при необходимости)
+// function resetLeadsTable() {
+//   db.exec(`
+//     DROP TABLE IF EXISTS leads;
+//      CREATE TABLE IF NOT EXISTS leads (
+//       id INTEGER PRIMARY KEY AUTOINCREMENT,
+//       name TEXT,
+//       email TEXT,
+//       phone TEXT,
+//       status TEXT DEFAULT 'new',
+//       service_id INTEGER,
+//       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+//       FOREIGN KEY(service_id) REFERENCES services(id)
+//     );
+//   `);
+// }
+
+//resetLeadsTable(); // раскомментировать только когда нужно пересоздать таблицу

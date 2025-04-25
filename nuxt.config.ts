@@ -29,5 +29,10 @@ export default defineNuxtConfig({
         target: 'node14'
       }
     }
+  },
+  runtimeConfig: {
+    // The private keys which are only available server-side
+    adminMail: process.env.ADMIN_MAIL,
+    adminPassword: process.env.ADMIN_PASSWORD
   }
 })
