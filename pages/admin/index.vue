@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-
 definePageMeta({
   layout: 'admin'
 })
@@ -25,6 +24,6 @@ onMounted(() => {
         {{ user.name }} - {{ user.email }}
       </li>
     </ul>
-  </div>
+    </div>
   </div>
 </template>

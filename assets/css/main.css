@@ -1,3 +1,42 @@
-/* body{
+/*  */
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+:root{
+    /* Colors */
+    --d-color: black;
+    --l-color:whitesmoke;
+}
+
+@layer base {
+  :root {
+    /* Светлая тема */
+    --color-primary: var(--l-color);
+    --color-secondary: var(--d-color);
+  }
+
+  .dark {
+    /* Темная тема */
+    --color-primary: var(--d-color);
+    --color-secondary: var(--l-color);
+  }
+
+  body {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+  }
+}
+
+button{
+    background: var(--l-color);
+    color: var(--d-color);
+    padding: 10px 15px;
+}
+
+/* html.dark body{
     background-color: black;
+    color: var(--l-color);
 } */
