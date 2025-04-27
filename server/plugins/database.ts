@@ -12,11 +12,22 @@ export default defineNitroPlugin((nitroApp) => {
   
   db.pragma('journal_mode = WAL')
   db.exec(`
-    CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      email TEXT UNIQUE NOT NULL
-    );
+   CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    addres TEXT,
+    email TEXT,
+    phone TEXT,
+    telegram TEXT,
+    whatsapp TEXT,
+    vk TEXT,
+    insta TEXT,
+    title TEXT,
+    subtitle TEXT,
+    description TEXT,
+    maintext TEXT,
+    worktime TEXT
+  );
 
     CREATE TABLE IF NOT EXISTS team (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,11 +54,11 @@ export default defineNitroPlugin((nitroApp) => {
   })
 })
 
-//Добавим функцию для пересоздания таблицы (использовать только при необходимости)
+// Добавим функцию для пересоздания таблицы (использовать только при необходимости)
 // function resetLeadsTable() {
 //   db.exec(`
-//     DROP TABLE IF EXISTS leads;
-//      CREATE TABLE IF NOT EXISTS leads (
+//     DROP TABLE IF EXISTS users;
+//      CREATE TABLE IF NOT EXISTS users (
 //       id INTEGER PRIMARY KEY AUTOINCREMENT,
 //       name TEXT,
 //       email TEXT,
@@ -60,4 +71,4 @@ export default defineNitroPlugin((nitroApp) => {
 //   `);
 // }
 
-//resetLeadsTable(); // раскомментировать только когда нужно пересоздать таблицу
+// resetLeadsTable(); // раскомментировать только когда нужно пересоздать таблицу

@@ -1,5 +1,5 @@
 <template>
     <main>
-        <h1>Это главная страница</h1>
+        <MainBanner/>
     </main>
 </template>

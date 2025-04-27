@@ -27,22 +27,21 @@ const emit = defineEmits(['update:modelValue']);
   top: 0;
   right: 0;
   height: 100vh;
-  width: 400px; /* или нужная ширина */
-  background: #fff;
+  width: 100vw;
+  max-width: 480px;
+  min-width: 300px;
   z-index: 9999;
   box-shadow: -2px 0 8px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
-}
-
-.modal-right {
-  /* дополнительный класс, если нужно */
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
   flex: 1;
   overflow-y: auto;
-  padding: 24px;
+  padding: 2rem;
 }
 
 .close-icon {
@@ -50,6 +49,7 @@ const emit = defineEmits(['update:modelValue']);
   top: 16px;
   left: 16px;
   font-size: 24px;
+  font-weight: bold;
 }
 
 .modal-enter-active, .modal-leave-active {

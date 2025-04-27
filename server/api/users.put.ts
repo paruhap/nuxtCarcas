@@ -1,23 +1,33 @@
-// server/api/users.post.ts
 import { readBody, createError } from 'h3'
 
 export default defineEventHandler(async (event) => {
   const db = event.context.db
   const body = await readBody(event)
 
-  // Валидация
-  if (!body.name || !body.email) {
+  if (!body.id || !body.name || !body.email) {
     throw createError({
       statusCode: 400,
-      message: 'Name and email are required'
+      message: 'User id, name and email are required'
     })
   }
 
   try {
     const stmt = db.prepare(`
-      INSERT INTO users (
-        name, addres, email, phone, telegram, whatsapp, vk, insta, title, subtitle, description, maintext, worktime
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      UPDATE users SET
+        name = ?,
+        addres = ?,
+        email = ?,
+        phone = ?,
+        telegram = ?,
+        whatsapp = ?,
+        vk = ?,
+        insta = ?,
+        title = ?,
+        subtitle = ?,
+        description = ?,
+        maintext = ?,
+        worktime = ?
+      WHERE id = ?
     `)
     const result = stmt.run(
       body.name,
@@ -32,9 +42,10 @@ export default defineEventHandler(async (event) => {
       body.subtitle || '',
       body.description || '',
       body.maintext || '',
-      body.worktime || ''
+      body.worktime || '',
+      body.id
     )
-    return { id: result.lastInsertRowid }
+    return { updated: result.changes }
   } catch (e: any) {
     throw createError({
       statusCode: 500,

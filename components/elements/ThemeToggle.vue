@@ -1,20 +1,18 @@
 <template>
-    <button 
-      @click="toggleTheme"
-      class="p-2 rounded-lg bg-gray-200 dark:bg-gray-800"
-    >
-      <span v-if="$colorMode.value === 'dark'">🌞</span>
-      <span v-else>🌙</span>
-    </button>
-  </template>
-  
-  <script>
-  export default {
-    methods: {
-      toggleTheme() {
-        this.$colorMode.preference = 
-          this.$colorMode.value === 'dark' ? 'light' : 'dark'
-      }
-    }
+  <select v-model="selectedTheme" class="p-2 border rounded">
+    <option value="system">Системная</option>
+    <option value="light">Светлая</option>
+    <option value="dark">Тёмная</option>
+  </select>
+</template>
+
+<script setup lang="ts">
+const colorMode = useColorMode()
+
+const selectedTheme = computed({
+  get: () => colorMode.preference,
+  set: (value: 'system' | 'light' | 'dark') => {
+    colorMode.preference = value
   }
-  </script>
+})
+</script>

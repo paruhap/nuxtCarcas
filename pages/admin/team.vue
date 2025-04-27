@@ -27,7 +27,7 @@
         </ul>
       </div>
       <Teleport to="body">
-            <transition name="modal" @click="isModalOpen = false">
+            <transition name="modal">
                 <div v-if="isModalOpen" class="modal">
                     <div class="close-icon cursor-pointer" @click="isModalOpen = false">x</div>
                     <div class="modal-content">
@@ -165,6 +165,10 @@
   })
 </script>
   
-  <style>
 
-  </style>
+<style>
+.form-group > input, textarea{
+background: none;
+border: 1px solid var(--l-color);
+}
+</style>

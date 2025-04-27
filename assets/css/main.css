@@ -7,8 +7,11 @@
 
 :root{
     /* Colors */
-    --d-color: black;
+    --d-color: #0a0214;
     --l-color:whitesmoke;
+    --r-color:#d52d19;
+    --bg-gradient-d:linear-gradient(138deg, rgb(5, 1, 36) 0%, rgb(12, 1, 25) 23%, rgb(0, 0, 0) 50%, rgb(7, 8, 23) 71%, rgb(11, 7, 11) 100%) 0% 0% / 180% 180%;
+    --bg-gradient-l:linear-gradient(138deg, rgb(29, 1, 243) 0%, rgb(114, 4, 239) 23%, rgb(241, 241, 241) 50%, rgb(79, 90, 246) 71%, rgb(247, 167, 247) 100%) 0% 0% / 180% 180%;
 }
 
 @layer base {
@@ -22,10 +25,18 @@
     /* Темная тема */
     --color-primary: var(--d-color);
     --color-secondary: var(--l-color);
+    --bg-gradient:var(--bg-gradient-d)
   }
 
   body {
-    background-color: var(--color-primary);
+    background: var(--bg-gradient) no-repeat;
+    background-size: cover;
+    color: var(--color-secondary);
+  }
+
+  .modal{
+    background: var(--bg-gradient) no-repeat;
+    background-size: cover;
     color: var(--color-secondary);
   }
 }

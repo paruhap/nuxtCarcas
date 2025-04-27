@@ -2,28 +2,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-04-24',
   devtools: { enabled: true },
-  app: {
-    head: {
-      script: [
-        {
-          id: 'theme-script',
-          innerHTML: `
-            try {
-              if (localStorage.theme === 'dark' || 
-                  (!('theme' in localStorage) && 
-                  window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark')
-              } else {
-                document.documentElement.classList.remove('dark')
-              }
-            } catch (_) {}
-          `,
-          type: 'text/javascript',
-        }
-      ]
-    },
-    pageTransition: { name: 'page', mode: 'out-in' }
-  },
   imports: {
     scan: true
   },
@@ -40,16 +18,45 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode'
   ],
   colorMode: {
-    preference: 'system',
-    dataValue: 'theme',
-    classSuffix: '',
+    preference: 'dark',
+    storageKey: 'nuxt-color-mode',
+    fallback: 'dark',
+    classSuffix: ''
   },
+
   tailwindcss: {
-    editorSupport: true,
     config: {
       darkMode: 'class'
     }
   },
+
+  // app: {
+  //   head: {
+  //     script: [
+  //       {
+  //         id: 'theme-init',
+  //         innerHTML: `
+  //         (function() {
+  //           try {
+  //             var savedTheme = localStorage.getItem('nuxt-color-mode');
+  //             var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+              
+  //             // Если нет сохраненной темы, форсируем dark
+  //             if (!savedTheme) {
+  //               document.documentElement.classList.add('dark');
+  //               document.documentElement.setAttribute('data-theme', 'dark');
+  //             }
+  //           } catch(e) {}
+  //         })()
+  //       `,
+  //         type: 'text/javascript'
+  //       }
+  //     ]
+  //   }
+  // },
+  plugins: [
+    '~/plugins/theme.listener.ts'
+  ],
   routeRules: {
     '/login': { prerender: false }
   },
